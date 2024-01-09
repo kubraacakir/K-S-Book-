@@ -63,6 +63,7 @@ flutter:
   assets:
     - assets/images/logom.png
     - assets/images/polisiye.jpg
+    - assets/images/polisiye2.jpg
     - assets/images/ask.jpg
     - assets/images/cocuk.jpg
     - assets/images/fantastik.jpg

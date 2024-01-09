@@ -60,13 +60,6 @@ class _UyeOlState extends State {
           fontSize: 18.0,
         );
       }
-      // if (response.statusCode == 200) {
-      //   print('İstek başarılı!'); // Başarılı bir yanıt aldınız.
-      //   print('Yanıt: ${response.body}');
-      // } else {
-      //   print('İstek başarısız!'); // Yanıtta bir hata oldu.
-      //   print('Hata kodu: ${response.statusCode}');
-      // }
     }
 
     return MaterialApp(

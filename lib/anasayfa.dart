@@ -1,6 +1,9 @@
 // ignore: file_names
 import 'dart:convert';
 
+import 'package:book_shopping_f/FavoritedBooksScreen%20.dart';
+import 'package:book_shopping_f/Search.dart';
+import 'package:book_shopping_f/Sepet.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:fluttertoast/fluttertoast.dart';
@@ -173,7 +176,10 @@ class ImageGrid extends StatelessWidget {
 }
 
 class HeartIcon extends StatefulWidget {
+  const HeartIcon({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _HeartIconState createState() => _HeartIconState();
 }
 
@@ -200,6 +206,13 @@ class _HeartIconState extends State<HeartIcon> {
 
 class PolisiyeSayfasi extends StatelessWidget {
   const PolisiyeSayfasi({super.key});
+  void _navigateFunction(BuildContext context) async {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const Sepet(),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -211,7 +224,7 @@ class PolisiyeSayfasi extends StatelessWidget {
         children: [
           Container(
             color: const Color.fromARGB(255, 202, 225, 247),
-            height: 260.0,
+            height: 520.0,
             alignment: Alignment.center,
             child: const SingleChildScrollView(
               child: Column(),
@@ -230,27 +243,24 @@ class PolisiyeSayfasi extends StatelessWidget {
                     style:
                         TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(
-                      width:
-                          35.0), // Metin ile fotoğraf arasına boşluk ekleyebilirsiniz
+                  SizedBox(width: 35.0),
                   Image(
-                    image: AssetImage(
-                        'assets/images/polisiye.jpg'), // Fotoğrafın path'ini belirtin
+                    image: AssetImage('assets/images/polisiye.jpg'),
                     fit: BoxFit.fill,
                     width: 70.00,
-                    height: 90.00, // Fotoğrafın boyutunu ayarlayın
+                    height: 90.00,
                   ),
                 ],
               ),
             ),
           ),
-          Positioned(
-            top: 16.0,
+          const Positioned(
+            top: 32.0,
             left: 16.0,
             child: HeartIcon(),
           ),
           const Positioned(
-            top: 55.0,
+            top: 75.0,
             left: 20.0,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -279,15 +289,111 @@ class PolisiyeSayfasi extends StatelessWidget {
               ],
             ),
           ),
-          const Positioned(
-            top: 75.0,
-            left: 20.0,
+          Positioned(
+            top: 180.0,
+            left: 280.0,
             child: Row(
               children: [
-                // ElevatedButton(onPressed: _onPre, child: const Text('Sepete Ekle'), style: ButtonStyle(backgroundColor: Color.fromARGB(255, 63, 189, 67)),)
+                ElevatedButton(
+                  onPressed: () => _navigateFunction(context),
+                  child: const Text('Sepete Ekle'),
+                )
               ],
             ),
-          )
+          ),
+          Positioned(
+            top: 230.0, // Uygun bir konum belirleyin
+            child: Container(
+              width: MediaQuery.of(context).size.width -
+                  0, // Ekran genişliği kadar uzunluk
+              margin:
+                  const EdgeInsets.symmetric(horizontal: 0.0, vertical: 10.0),
+              decoration: const BoxDecoration(
+                border: Border(
+                  top: BorderSide(width: 1.0, color: Colors.black),
+                ),
+              ),
+            ),
+          ),
+          // Yeni kitap ekleniyor
+          Positioned(
+            top: 250.0, // Uygun bir konum belirleyin
+            child: Container(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 120.0, vertical: 60.0),
+              color: const Color.fromARGB(255, 202, 225, 247),
+              child: const Row(
+                children: [
+                  Text(
+                    'Ölüm Büyüsü',
+                    style:
+                        TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                      width:
+                          35.0), // Metin ile fotoğraf arasına boşluk ekleyebilirsiniz
+                ],
+              ),
+            ),
+          ),
+          const Positioned(
+            top: 290.0,
+            left: 310.0,
+            child: Image(
+              image: AssetImage(
+                  'assets/images/polisiye2.jpg'), // Yeni kitabın fotoğraf path'i
+              fit: BoxFit.fill,
+              width: 70.00,
+              height: 90.00,
+            ),
+          ),
+          const Positioned(
+            top: 300.0,
+            left: 16.0,
+            child: HeartIcon(),
+          ),
+          const Positioned(
+            top: 345.0,
+            left: 20.0,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 60.0),
+                Text(
+                  'Yazar : Agatha Christie',
+                  style:
+                      TextStyle(fontSize: 18.00, fontWeight: FontWeight.w400),
+                ),
+                Text(
+                  'Sayfa Sayısı :100',
+                  style:
+                      TextStyle(fontSize: 18.00, fontWeight: FontWeight.w400),
+                ),
+                Text(
+                  'Basım Yılı : 2021',
+                  style:
+                      TextStyle(fontSize: 18.00, fontWeight: FontWeight.w400),
+                ),
+                Text(
+                  'Fiyat : 75 TL',
+                  style:
+                      TextStyle(fontSize: 18.00, fontWeight: FontWeight.w400),
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            top: 450.0,
+            left: 280.0,
+            child: Row(
+              children: [
+                ElevatedButton(
+                  onPressed: () => _navigateFunction(context),
+                  child: const Text('Sepete Ekle'),
+                )
+              ],
+            ),
+          ),
         ],
       ),
     );
@@ -296,6 +402,13 @@ class PolisiyeSayfasi extends StatelessWidget {
 
 class AskSayfasi extends StatelessWidget {
   const AskSayfasi({super.key});
+  void _navigateFunction(BuildContext context) async {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const Sepet(),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -303,8 +416,91 @@ class AskSayfasi extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Aşk Kategorisi'),
       ),
-      body: const Center(
-        child: Text('Bu sayfa Aşk kategorisine aittir.'),
+      body: Stack(
+        children: [
+          Container(
+            color: const Color.fromARGB(255, 202, 225, 247),
+            height: 260.0,
+            alignment: Alignment.center,
+            child: const SingleChildScrollView(
+              child: Column(),
+            ),
+          ),
+          Positioned(
+            top: 10.0,
+            child: Container(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 115.0, vertical: 0.0),
+              color: const Color.fromARGB(255, 202, 225, 247),
+              child: const Row(
+                children: [
+                  Text(
+                    'Çalıkuşu',
+                    style:
+                        TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    width: 90.0,
+                  ), // Metin ile fotoğraf arasına boşluk ekleyebilirsiniz
+                  Image(
+                    image: AssetImage(
+                        'assets/images/ask.jpg'), // Fotoğrafın path'ini belirtin
+                    fit: BoxFit.fill,
+                    width: 70.00,
+                    height: 90.00, // Fotoğrafın boyutunu ayarlayın
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const Positioned(
+            top: 32.0,
+            left: 16.0,
+            child: HeartIcon(),
+          ),
+          const Positioned(
+            top: 75.0,
+            left: 20.0,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 60.0),
+                Text(
+                  'Yazar : Reşat Nuri Güntekin',
+                  style:
+                      TextStyle(fontSize: 18.00, fontWeight: FontWeight.w400),
+                ),
+                Text(
+                  'Sayfa Sayısı :230',
+                  style:
+                      TextStyle(fontSize: 18.00, fontWeight: FontWeight.w400),
+                ),
+                Text(
+                  'Basım Yılı : 2013',
+                  style:
+                      TextStyle(fontSize: 18.00, fontWeight: FontWeight.w400),
+                ),
+                Text(
+                  'Fiyat : 165 TL',
+                  style:
+                      TextStyle(fontSize: 18.00, fontWeight: FontWeight.w400),
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            top: 190.0,
+            left: 280.0,
+            child: Row(
+              children: [
+                ElevatedButton(
+                  onPressed: () => _navigateFunction(context),
+                  child: const Text('Sepete Ekle'),
+                )
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -312,6 +508,13 @@ class AskSayfasi extends StatelessWidget {
 
 class CocukSayfasi extends StatelessWidget {
   const CocukSayfasi({super.key});
+  void _navigateFunction(BuildContext context) async {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const Sepet(),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -319,8 +522,91 @@ class CocukSayfasi extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Çocuk Kategorisi'),
       ),
-      body: const Center(
-        child: Text('Bu sayfa Çocuk kategorisine aittir.'),
+      body: Stack(
+        children: [
+          Container(
+            color: const Color.fromARGB(255, 202, 225, 247),
+            height: 260.0,
+            alignment: Alignment.center,
+            child: const SingleChildScrollView(
+              child: Column(),
+            ),
+          ),
+          Positioned(
+            top: 10.0,
+            child: Container(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 115.0, vertical: 0.0),
+              color: const Color.fromARGB(255, 202, 225, 247),
+              child: const Row(
+                children: [
+                  Text(
+                    'Küçük Prens',
+                    style:
+                        TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                      width:
+                          75.0), // Metin ile fotoğraf arasına boşluk ekleyebilirsiniz
+                  Image(
+                    image: AssetImage(
+                        'assets/images/cocuk.jpg'), // Fotoğrafın path'ini belirtin
+                    fit: BoxFit.fill,
+                    width: 85.00,
+                    height: 100.00, // Fotoğrafın boyutunu ayarlayın
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const Positioned(
+            top: 34.0,
+            left: 16.0,
+            child: HeartIcon(),
+          ),
+          const Positioned(
+            top: 75.0,
+            left: 20.0,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 60.0),
+                Text(
+                  'Yazar : Antoine de Saint-Exupéry',
+                  style:
+                      TextStyle(fontSize: 18.00, fontWeight: FontWeight.w400),
+                ),
+                Text(
+                  'Sayfa Sayısı :80',
+                  style:
+                      TextStyle(fontSize: 18.00, fontWeight: FontWeight.w400),
+                ),
+                Text(
+                  'Basım Yılı : 2014',
+                  style:
+                      TextStyle(fontSize: 18.00, fontWeight: FontWeight.w400),
+                ),
+                Text(
+                  'Fiyat : 85 TL',
+                  style:
+                      TextStyle(fontSize: 18.00, fontWeight: FontWeight.w400),
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            top: 185.0,
+            left: 280.0,
+            child: Row(
+              children: [
+                ElevatedButton(
+                  onPressed: () => _navigateFunction(context),
+                  child: const Text('Sepete Ekle'),
+                )
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -328,6 +614,13 @@ class CocukSayfasi extends StatelessWidget {
 
 class FantastikSayfasi extends StatelessWidget {
   const FantastikSayfasi({super.key});
+  void _navigateFunction(BuildContext context) async {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const Sepet(),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -335,8 +628,91 @@ class FantastikSayfasi extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Fantastik Kategorisi'),
       ),
-      body: const Center(
-        child: Text('Bu sayfa Fantastik kategorisine aittir.'),
+      body: Stack(
+        children: [
+          Container(
+            color: const Color.fromARGB(255, 202, 225, 247),
+            height: 260.0,
+            alignment: Alignment.center,
+            child: const SingleChildScrollView(
+              child: Column(),
+            ),
+          ),
+          Positioned(
+            top: 10.0,
+            child: Container(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 115.0, vertical: 0.0),
+              color: const Color.fromARGB(255, 202, 225, 247),
+              child: const Row(
+                children: [
+                  Text(
+                    'Harry Potter',
+                    style:
+                        TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                      width:
+                          55.0), // Metin ile fotoğraf arasına boşluk ekleyebilirsiniz
+                  Image(
+                    image: AssetImage(
+                        'assets/images/fantastik.jpg'), // Fotoğrafın path'ini belirtin
+                    fit: BoxFit.fill,
+                    width: 70.00,
+                    height: 90.00, // Fotoğrafın boyutunu ayarlayın
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const Positioned(
+            top: 32.0,
+            left: 16.0,
+            child: HeartIcon(),
+          ),
+          const Positioned(
+            top: 75.0,
+            left: 20.0,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 60.0),
+                Text(
+                  'Yazar : J. K. Rowling',
+                  style:
+                      TextStyle(fontSize: 18.00, fontWeight: FontWeight.w400),
+                ),
+                Text(
+                  'Sayfa Sayısı :220',
+                  style:
+                      TextStyle(fontSize: 18.00, fontWeight: FontWeight.w400),
+                ),
+                Text(
+                  'Basım Yılı : 2023',
+                  style:
+                      TextStyle(fontSize: 18.00, fontWeight: FontWeight.w400),
+                ),
+                Text(
+                  'Fiyat : 255 TL',
+                  style:
+                      TextStyle(fontSize: 18.00, fontWeight: FontWeight.w400),
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            top: 185.0,
+            left: 280.0,
+            child: Row(
+              children: [
+                ElevatedButton(
+                  onPressed: () => _navigateFunction(context),
+                  child: const Text('Sepete Ekle'),
+                )
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -344,6 +720,13 @@ class FantastikSayfasi extends StatelessWidget {
 
 class FelsefeSayfasi extends StatelessWidget {
   const FelsefeSayfasi({super.key});
+  void _navigateFunction(BuildContext context) async {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const Sepet(),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -351,8 +734,91 @@ class FelsefeSayfasi extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Felsefe Kategorisi'),
       ),
-      body: const Center(
-        child: Text('Bu sayfa Felsefe kategorisine aittir.'),
+      body: Stack(
+        children: [
+          Container(
+            color: const Color.fromARGB(255, 202, 225, 247),
+            height: 260.0,
+            alignment: Alignment.center,
+            child: const SingleChildScrollView(
+              child: Column(),
+            ),
+          ),
+          Positioned(
+            top: 10.0,
+            child: Container(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 88.0, vertical: 10.0),
+              color: const Color.fromARGB(255, 202, 225, 247),
+              child: const Row(
+                children: [
+                  Text(
+                    'Sokratesin Savunması',
+                    style:
+                        TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                      width:
+                          25.0), // Metin ile fotoğraf arasına boşluk ekleyebilirsiniz
+                  Image(
+                    image: AssetImage(
+                        'assets/images/felsefe.jpg'), // Fotoğrafın path'ini belirtin
+                    fit: BoxFit.fill,
+                    width: 70.00,
+                    height: 90.00, // Fotoğrafın boyutunu ayarlayın
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const Positioned(
+            top: 40.0,
+            left: 16.0,
+            child: HeartIcon(),
+          ),
+          const Positioned(
+            top: 75.0,
+            left: 20.0,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 60.0),
+                Text(
+                  'Yazar : Platon',
+                  style:
+                      TextStyle(fontSize: 18.00, fontWeight: FontWeight.w400),
+                ),
+                Text(
+                  'Sayfa Sayısı : 64',
+                  style:
+                      TextStyle(fontSize: 18.00, fontWeight: FontWeight.w400),
+                ),
+                Text(
+                  'Basım Yılı : 2017',
+                  style:
+                      TextStyle(fontSize: 18.00, fontWeight: FontWeight.w400),
+                ),
+                Text(
+                  'Fiyat : 55 TL',
+                  style:
+                      TextStyle(fontSize: 18.00, fontWeight: FontWeight.w400),
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            top: 185.0,
+            left: 280.0,
+            child: Row(
+              children: [
+                ElevatedButton(
+                  onPressed: () => _navigateFunction(context),
+                  child: const Text('Sepete Ekle'),
+                )
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -360,6 +826,13 @@ class FelsefeSayfasi extends StatelessWidget {
 
 class KurguSayfasi extends StatelessWidget {
   const KurguSayfasi({super.key});
+  void _navigateFunction(BuildContext context) async {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const Sepet(),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -367,8 +840,92 @@ class KurguSayfasi extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Kurgu Kategorisi'),
       ),
-      body: const Center(
-        child: Text('Bu sayfa Kurgu kategorisine aittir.'),
+      body: Stack(
+        children: [
+          Container(
+            color: const Color.fromARGB(255, 202, 225, 247),
+            height: 260.0,
+            alignment: Alignment.center,
+            child: const SingleChildScrollView(
+              child: Column(),
+            ),
+          ),
+          Positioned(
+            top: 10.0,
+            child: Container(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 85.0, vertical: 32.0),
+              color: const Color.fromARGB(255, 202, 225, 247),
+              child: const Row(
+                children: [
+                  Text(
+                    'Bilinmeyen Bir Kadının Mektubu',
+                    style:
+                        TextStyle(fontSize: 21.0, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const Positioned(
+            top: 80.0,
+            left: 300.0,
+            child: Image(
+              image: AssetImage(
+                  'assets/images/kurgu.jpg'), // Fotoğrafın path'ini belirtin
+              fit: BoxFit.fill,
+              width: 95.00,
+              height: 105.00, // Fotoğrafın boyutunu ayarlayın
+            ),
+          ),
+          const Positioned(
+            top: 32.0,
+            left: 16.0,
+            child: HeartIcon(),
+          ),
+          const Positioned(
+            top: 75.0,
+            left: 30.0,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 60.0),
+                Text(
+                  'Yazar : Stefan Zweig',
+                  style:
+                      TextStyle(fontSize: 18.00, fontWeight: FontWeight.w400),
+                ),
+                Text(
+                  'Sayfa Sayısı :90',
+                  style:
+                      TextStyle(fontSize: 18.00, fontWeight: FontWeight.w400),
+                ),
+                Text(
+                  'Basım Yılı : 2021',
+                  style:
+                      TextStyle(fontSize: 18.00, fontWeight: FontWeight.w400),
+                ),
+                Text(
+                  'Fiyat : 70 TL',
+                  style:
+                      TextStyle(fontSize: 18.00, fontWeight: FontWeight.w400),
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            top: 200.0,
+            left: 290.0,
+            child: Row(
+              children: [
+                ElevatedButton(
+                  onPressed: () => _navigateFunction(context),
+                  child: const Text('Sepete Ekle'),
+                )
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -376,6 +933,13 @@ class KurguSayfasi extends StatelessWidget {
 
 class MaceraSayfasi extends StatelessWidget {
   const MaceraSayfasi({super.key});
+  void _navigateFunction(BuildContext context) async {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const Sepet(),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -383,8 +947,92 @@ class MaceraSayfasi extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Macera Kategorisi'),
       ),
-      body: const Center(
-        child: Text('Bu sayfa Macera kategorisine aittir.'),
+      body: Stack(
+        children: [
+          Container(
+            color: const Color.fromARGB(255, 202, 225, 247),
+            height: 260.0,
+            alignment: Alignment.center,
+            child: const SingleChildScrollView(
+              child: Column(),
+            ),
+          ),
+          Positioned(
+            top: 10.0,
+            child: Container(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 115.0, vertical: 35.0),
+              color: const Color.fromARGB(255, 202, 225, 247),
+              child: const Row(
+                children: [
+                  Text(
+                    'Define Adası',
+                    style:
+                        TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const Positioned(
+            top: 20.0,
+            left: 300.0,
+            child: Image(
+              image: AssetImage(
+                  'assets/images/macera.jpg'), // Fotoğrafın path'ini belirtin
+              fit: BoxFit.fill,
+              width: 80.00,
+              height: 100.00, // Fotoğrafın boyutunu ayarlayın
+            ),
+          ),
+          const Positioned(
+            top: 32.0,
+            left: 16.0,
+            child: HeartIcon(),
+          ),
+          const Positioned(
+            top: 75.0,
+            left: 20.0,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 60.0),
+                Text(
+                  'Yazar : R. Louis Stevenson',
+                  style:
+                      TextStyle(fontSize: 18.00, fontWeight: FontWeight.w400),
+                ),
+                Text(
+                  'Sayfa Sayısı :100',
+                  style:
+                      TextStyle(fontSize: 18.00, fontWeight: FontWeight.w400),
+                ),
+                Text(
+                  'Basım Yılı : 2010',
+                  style:
+                      TextStyle(fontSize: 18.00, fontWeight: FontWeight.w400),
+                ),
+                Text(
+                  'Fiyat : 65 TL',
+                  style:
+                      TextStyle(fontSize: 18.00, fontWeight: FontWeight.w400),
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            top: 185.0,
+            left: 280.0,
+            child: Row(
+              children: [
+                ElevatedButton(
+                  onPressed: () => _navigateFunction(context),
+                  child: const Text('Sepete Ekle'),
+                )
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -392,6 +1040,13 @@ class MaceraSayfasi extends StatelessWidget {
 
 class PsikolojiSayfasi extends StatelessWidget {
   const PsikolojiSayfasi({super.key});
+  void _navigateFunction(BuildContext context) async {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const Sepet(),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -399,8 +1054,92 @@ class PsikolojiSayfasi extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Psikoloji Kategorisi'),
       ),
-      body: const Center(
-        child: Text('Bu sayfa Psikoloji kategorisine aittir.'),
+      body: Stack(
+        children: [
+          Container(
+            color: const Color.fromARGB(255, 202, 225, 247),
+            height: 260.0,
+            alignment: Alignment.center,
+            child: const SingleChildScrollView(
+              child: Column(),
+            ),
+          ),
+          Positioned(
+            top: 10.0,
+            child: Container(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 80.0, vertical: 35.0),
+              color: const Color.fromARGB(255, 202, 225, 247),
+              child: const Row(
+                children: [
+                  Text(
+                    'Bir Psikiyatristin Gizli Defteri',
+                    style:
+                        TextStyle(fontSize: 21.0, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const Positioned(
+            top: 90.0,
+            left: 300.0,
+            child: Image(
+              image: AssetImage(
+                  'assets/images/psikoloji.jpg'), // Fotoğrafın path'ini belirtin
+              fit: BoxFit.fill,
+              width: 80.00,
+              height: 100.00, // Fotoğrafın boyutunu ayarlayın
+            ),
+          ),
+          const Positioned(
+            top: 32.0,
+            left: 16.0,
+            child: HeartIcon(),
+          ),
+          const Positioned(
+            top: 75.0,
+            left: 20.0,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 60.0),
+                Text(
+                  'Yazar : Gary Small, Gigi Vorgan',
+                  style:
+                      TextStyle(fontSize: 18.00, fontWeight: FontWeight.w400),
+                ),
+                Text(
+                  'Sayfa Sayısı :120',
+                  style:
+                      TextStyle(fontSize: 18.00, fontWeight: FontWeight.w400),
+                ),
+                Text(
+                  'Basım Yılı : 2019',
+                  style:
+                      TextStyle(fontSize: 18.00, fontWeight: FontWeight.w400),
+                ),
+                Text(
+                  'Fiyat : 150 TL',
+                  style:
+                      TextStyle(fontSize: 18.00, fontWeight: FontWeight.w400),
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            top: 200.0,
+            left: 285.0,
+            child: Row(
+              children: [
+                ElevatedButton(
+                  onPressed: () => _navigateFunction(context),
+                  child: const Text('Sepete Ekle'),
+                )
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -408,6 +1147,13 @@ class PsikolojiSayfasi extends StatelessWidget {
 
 class TarihSayfasi extends StatelessWidget {
   const TarihSayfasi({super.key});
+  void _navigateFunction(BuildContext context) async {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const Sepet(),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -415,8 +1161,92 @@ class TarihSayfasi extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Tarih Kategorisi'),
       ),
-      body: const Center(
-        child: Text('Bu sayfa Tarih kategorisine aittir.'),
+      body: Stack(
+        children: [
+          Container(
+            color: const Color.fromARGB(255, 202, 225, 247),
+            height: 260.0,
+            alignment: Alignment.center,
+            child: const SingleChildScrollView(
+              child: Column(),
+            ),
+          ),
+          Positioned(
+            top: 10.0,
+            child: Container(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 85.0, vertical: 35.0),
+              color: const Color.fromARGB(255, 202, 225, 247),
+              child: const Row(
+                children: [
+                  Text(
+                    'Gazi Mustafa Kemal Atatürk',
+                    style:
+                        TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const Positioned(
+            top: 80.0,
+            left: 300.0,
+            child: Image(
+              image: AssetImage(
+                  'assets/images/tarih.jpg'), // Fotoğrafın path'ini belirtin
+              fit: BoxFit.fill,
+              width: 90.00,
+              height: 110.00, // Fotoğrafın boyutunu ayarlayın
+            ),
+          ),
+          const Positioned(
+            top: 32.0,
+            left: 16.0,
+            child: HeartIcon(),
+          ),
+          const Positioned(
+            top: 75.0,
+            left: 20.0,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 60.0),
+                Text(
+                  'Yazar : İlber Ortaylı',
+                  style:
+                      TextStyle(fontSize: 18.00, fontWeight: FontWeight.w400),
+                ),
+                Text(
+                  'Sayfa Sayısı :200',
+                  style:
+                      TextStyle(fontSize: 18.00, fontWeight: FontWeight.w400),
+                ),
+                Text(
+                  'Basım Yılı : 2024',
+                  style:
+                      TextStyle(fontSize: 18.00, fontWeight: FontWeight.w400),
+                ),
+                Text(
+                  'Fiyat : 200 TL',
+                  style:
+                      TextStyle(fontSize: 18.00, fontWeight: FontWeight.w400),
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            top: 195.0,
+            left: 290.0,
+            child: Row(
+              children: [
+                ElevatedButton(
+                  onPressed: () => _navigateFunction(context),
+                  child: const Text('Sepete Ekle'),
+                )
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -560,9 +1390,7 @@ class _AnasayfaState extends State {
                   IconButton(
                       icon: const Icon(Icons.home),
                       onPressed: () async {
-                        // _getCategory metodunu çağır ve sonucu bekleyerek al
                         dynamic result = await _getCategory();
-                        // result, bir liste içinde kategorileri içeriyor varsayalım
                         // ignore: unnecessary_type_check
                         if (result is dynamic) {
                           List<Widget> categoryWidgets = [];
@@ -588,19 +1416,31 @@ class _AnasayfaState extends State {
                   IconButton(
                     icon: const Icon(Icons.search),
                     onPressed: () {
-                      // "Ara" butonuna tıklandığında yapılacak işlemler
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const Search(),
+                        ),
+                      );
                     },
                   ),
                   IconButton(
                     icon: const Icon(Icons.favorite),
                     onPressed: () {
-                      // "Ayarlar" butonuna tıklandığında yapılacak işlemler
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const FavoritedBooksScreen(),
+                        ),
+                      );
                     },
                   ),
                   IconButton(
                     icon: const Icon(Icons.shopping_cart),
                     onPressed: () {
-                      // "Ayarlar" butonuna tıklandığında yapılacak işlemler
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const Sepet(),
+                        ),
+                      );
                     },
                   ),
                 ],

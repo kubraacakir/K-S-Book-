@@ -53,7 +53,7 @@ class MyApp extends StatelessWidget {
                       // Navigator.pushNamed(context, "/uyeOl");
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => UyeOl(),
+                          builder: (context) => const UyeOl(),
                         ),
                       );
                     },
@@ -73,7 +73,7 @@ class MyApp extends StatelessWidget {
                     onPressed: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => UyeGiris(),
+                          builder: (context) => const UyeGiris(),
                         ),
                       );
                     },
