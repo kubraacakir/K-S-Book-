@@ -1,0 +1,6 @@
+@KSDenemeDotnet8_HostAddress = http://localhost:5160
+
+GET {{KSDenemeDotnet8_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
